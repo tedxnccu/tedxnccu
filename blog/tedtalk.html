@@ -1,0 +1,199 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/TEDxNCCU.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/5eb168b0154768602b7da05b54081381?s=16" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/5eb168b0154768602b7da05b54081381?s=16" sizes="16x16">
+<!-- InstanceBeginEditable name="head1" -->
+<title>TEDtalk--TEDxNCCU 文章分享</title>
+<!-- InstanceEndEditable -->
+<link href="../css/jquery-ui.css" rel="stylesheet" type="text/css">
+<!--link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"-->
+<link href="../css/reset.css" rel="stylesheet" type="text/css">
+<!--link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"-->
+<link href="../css/tedxnccu2.css" rel="stylesheet" type="text/css">
+<!-- InstanceBeginEditable name="head2" -->
+<style>
+</style>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<nav>
+	<div id="nav" class="container clearfix">
+		<div style="float:left;">
+			<a href="../index.html"><img src="../img/TEDxNCCU5.png" height="30" style="margin:8px 0px 3px 0px;"></a>
+		</div>
+		<div style="float:right">
+			<ul id="mainNav" class="hrzUL clearfix">
+				<li class="withSubNav clearfix">
+					<a href="../acts/index.html">TED活動</a>
+					<ul class="subNav">
+						<li><a href="#">2013 From Idea To Action</a></li>
+					</ul>
+				</li>
+				<li class="withSubNav clearfix">
+					<a href="index.html">文章分享</a>
+					<ul class="subNav">
+						<li><a href="blog.html">部落格</a></li>
+						<li><a href="tedtalk.html">TED TALK</a></li>
+						<li><a href="act.html">活動成果</a></li>
+					</ul>
+				</li>
+								<li><a href="../spnsors.html">贊助夥伴</a>	</li>
+				<li><a href="../aboutTEDx.html">關於TEDx</a></li>	
+				<li class="withSubNav clearfix"><a href="../about.html">關於我們</a>
+					<ul class="subNav">
+						<li><a href="members.html">團隊介紹</a></li>
+						<li><a href="#">團隊理念</a></li>
+						<li><a href="../contact.html">聯繫我們</a></li>
+					</ul>
+				</li>
+				<li><a href="https://www.facebook.com/tedxnccu">FaceBook</a></li>
+	
+			</ul>
+		</div>
+	</div>
+</nav>
+<div style="width:100%; height:44px;">
+</div>
+<!-- InstanceBeginEditable name="content" -->
+<div id="banner">
+	<div class="bannerPic-small-cover">
+		<div class="container">
+			<div class="title">
+				<h1>TEDxNCCU 文章分享</h1>
+			</div>
+			<div style="padding:10px; color:white; display:block; ">
+				文章列表&nbsp;&nbsp; >> &nbsp;所有文章&nbsp;
+			</div>
+
+		</div>
+	</div>
+	<div class="bannerPic-small shd-large">
+	</div>
+	
+	<!--div class="bread subBanner" style="position:absolute; top:250px; z-index:30;">
+		<div class="container">
+
+		</div>
+	</div-->	
+</div>
+
+
+<div id="content" class="outer bg">
+	<div class="container clearfix apdArea">
+		<!--div class="leftArea ">
+			<h3 class="tag">文章列表</h3>
+			<hr />
+		</div-->
+	</div> <!-- /container-->
+</div>
+<div class="container">
+	<form class="pageForm" action="view.html" method="get">
+		<input id="pageInput" name="blog" hidden="true" value="0">
+	</form>
+</div>
+
+<!-- InstanceEndEditable -->
+
+
+<footer class="outer-small">
+	<div class="container clearfix">
+		<ul class="hrzUL foot_nav">
+			<li><a href="../acts/index.html">From Idea to Action</a></li>
+			<li><a href="../contact.html">聯絡我們</a></li>
+			<li><a href="../manage/login.html">管理模式</a></li>
+		</ul>
+	</div>
+</footer>
+
+<!-- InstanceBeginEditable name="content-aft" -->
+<!-- InstanceEndEditable -->
+
+
+<!-- InstanceBeginEditable name="js-1" -->
+<!-- InstanceEndEditable -->
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script src="../js/jquery-ui.js" type="text/javascript"></script>
+<!--script src="js/bootstrap.min.js" type="text/javascript"></script-->
+<script src="../js/parse-1.2.8.min.js" type="text/javascript"></script>
+<script src="../js/TEDxNCCU.js" type="text/javascript"></script> 
+<!-- InstanceBeginEditable name="js-2" -->
+<script type="text/javascript">
+$('.apdArea').on('click','.art-pre-tit',function(e){
+	getData(e);
+});
+//$('.art-pre').on('click','.art-pre-pic',function(e){getData(e)});
+
+function getData (e){
+	var p = $($(e.currentTarget).parents('.art-pre')[0]).data('blog');
+	$('#pageInput').val(p);
+	$('.pageForm').submit();
+	return false 
+
+	//e.preventDefault();
+	//else return false;
+}
+
+var blogId;
+var blog;
+function getURLParameter(name) {
+	return decodeURI(
+		(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+	);
+}
+$(document).ready(function(e) {
+	//blogId = '8MROTNof9T'//'My4BYgu7Il' ;//(getURLParameter('blog'));
+	pullBlog ();
+	
+});
+
+var $apd = $('.apdArea');
+function pullBlog () {
+	Parse.initialize("BFuEvRNBwRW6MScfT6nIUrhZaKMBriF4VpAC0DwD", "MvYBNO5NQ6DeixPpLgmH60wQDQvQrf5nIrx6RHgy");
+	var TEDxBLOG = Parse.Object.extend("TEDxBLOG");
+	var query = new Parse.Query(TEDxBLOG);
+	query.equalTo("type","TEDx演講");
+	query.find({
+		success:function (o){
+			for (var i = 0 ; i < o.length ; i++){
+				blog = getBlog (o[i]);
+				show (blog);
+			}
+		},
+		error:function (o,e){
+			console.log (e);
+		}	
+	})
+}
+
+function getBlog (o){
+	console.log ('getting');
+	var obj = {
+		'subject': o.get('subject'),
+		'type': o.get('type'),
+		'writer': o.get('writer'),
+		'date': o.get('date'),
+		'preImg': o.get('preImg'),
+		'abstract': o.get('abstract'),
+		'content': o.get('content'),
+		'id':o.id
+	}
+	return obj;
+}
+
+function show (blog){
+	if (!blog.subject) { return false }//alert ('資料庫問題，請先參閱其他文章');
+	var a = '<div data-blog="'+ blog.id +'" class="art-pre clearfix block">				<a class="art-pre-pic"  title="'+ blog.subject  +'" href="#"><img width="200" height="200" src="'+ blog.preImg  +'"></a>				<div class="art-pre-info" >					<h3><a  href="#" class="art-pre-tit"  title="'+ blog.subject +'">'+ blog.subject +'</a></h3>					<span class="date">'+ blog.date +'</span>					<p>'+ blog.abstract +'</p>				</div>			</div>';
+	$apd.append(a);
+}
+
+
+ 		
+
+
+</script>
+<!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd --></html>
