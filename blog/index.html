@@ -57,7 +57,7 @@
 				<li><a href="../aboutTEDx.html">關於TEDx</a></li>	
 				<li class="withSubNav clearfix"><a href="../about.html">關於我們</a>
 					<ul class="subNav">
-						<li><a href="members.html">團隊介紹</a></li>
+						<li><a href="../members.html">團隊介紹</a></li>
 						<li><a href="#">團隊理念</a></li>
 						<li><a href="../contact.html">聯繫我們</a></li>
 					</ul>
@@ -189,6 +189,7 @@ function pullBlog () {
 				blog = getBlog (o[i]);
 				show (blog);
 			}
+			if(currentUser)$('.control-outer').show();
 		},
 		error:function (o,e){
 			console.log (e);
@@ -214,9 +215,11 @@ function getBlog (o){
 function show (blog){
 	if (!blog.subject) { return false }//alert ('資料庫問題，請先參閱其他文章');
 	var b = '<div class="art-pre-img" "></div>';
-	
-	if ( Parse.User.current()){var c = '<div class="control-outer" style="height:0px; width:auto; clear:both; bottom:60px; " >				<ul class="clearfix admin-btns" style="top:20px; right:20px;">					<li style="margin-right:20px;"><a id="admin-btn-edit" class="admin-btn" href="#" title="編輯"><img width="20" src="../img/btns/edit.png"></a></li>					<li><a id="admin-btn-bin" class="admin-btn" href="#" title="刪除"><img width="15" src="../img/btns/bin.png"></a></li>				</ul>			</div>';}// edit or delete func
-	var a = '<div data-blog="'+ blog.id +'" class="art-pre clearfix block">				<a class="art-pre-pic"  title="'+ blog.subject  +'" href="#"><img width="200" height="200" style="background-image:url('+blog.preImg+'); background-size:cover; background-position:center center;"></a>				<div class="art-pre-info" >					<h3><a  href="#" class="art-pre-tit"  title="'+ blog.subject +'">'+ blog.subject +'</a></h3>					<span class="date">'+ blog.date +'</span>					<p>'+ blog.abstract +'</p>				</div>'	+ c+		'</div>';
+	var c ;
+	if (Parse.User.current()) {console.log ('current');}
+	(Parse.User.current()) ? c = '<div class="control-outer" style="height:0px; width:auto; clear:both; bottom:60px; " >				<ul class="clearfix admin-btns" style="top:20px; right:20px;">					<li style="margin-right:20px;"><a id="admin-btn-edit" class="admin-btn" href="#" title="編輯"><img width="20" src="../img/btns/edit.png"></a></li>					<li><a id="admin-btn-bin" class="admin-btn" href="#" title="刪除"><img width="15" src="../img/btns/bin.png"></a></li>				</ul>			</div>' : c = ""; // edit or delete func
+	var a = '<div data-blog="'+ blog.id +'" class="art-pre clearfix block">				<a class="art-pre-pic"  title="'+ blog.subject  +'" href="#"><img width="200" height="200" style="background-image:url('+blog.preImg+'); background-size:cover; background-position:center center;"></a>				<div class="art-pre-info" >					<h3><a  href="#" class="art-pre-tit"  title="'+ blog.subject +'">'+ blog.subject +'</a></h3>					<span class="date">'+ blog.date +'</span>					<p>'+ blog.abstract +'</p>				</div>'+ c+'</div>';
+
 	$apd.append(a);
 }
 
@@ -262,10 +265,13 @@ $apd.on('click','#admin-btn-bin',function (e){
 
 
 
+var currentUser = Parse.User.current();
 
 
 $(document).ready(function(e) {
 	//blogId = '8MROTNof9T'//'My4BYgu7Il' ;//(getURLParameter('blog'));
+
+
 	pullBlog ();
 	
 });

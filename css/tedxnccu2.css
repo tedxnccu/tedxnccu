@@ -146,7 +146,7 @@ background:url(../img/bg/bg.jpg); background-size:contain;
 
 
 /* for edit*/
-.control-outer { position:relative;}
+.control-outer { position:relative; display:none;}
 .control-outer > *{ position:absolute;}
 .admin-btns > li { float:left;}
 .admin-btn:hover { opacity:.6; }

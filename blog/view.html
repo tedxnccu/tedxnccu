@@ -52,7 +52,7 @@ b { font-weight:bold;}
 				<li><a href="../aboutTEDx.html">關於TEDx</a></li>	
 				<li class="withSubNav clearfix"><a href="../about.html">關於我們</a>
 					<ul class="subNav">
-						<li><a href="members.html">團隊介紹</a></li>
+						<li><a href="../members.html">團隊介紹</a></li>
 						<li><a href="#">團隊理念</a></li>
 						<li><a href="../contact.html">聯繫我們</a></li>
 					</ul>
@@ -88,7 +88,7 @@ b { font-weight:bold;}
 <div class="outer bg" style="padding-top">
 	<div class="container">
 		<div class="shd block">
-			<div class="control-outer" style="height:40px; display:none" >
+			<div class="control-outer" style="display:none; height:40px; " >
 				<ul class="clearfix admin-btns" style="top:20px; right:20px;">
 					<li style="margin-right:20px;"><a id="admin-btn-edit" class="admin-btn" href="#" title="編輯"><img width="20" src="../img/btns/edit.png"></a></li>
 					<li><a id="admin-btn-bin" class="admin-btn" href="#" title="刪除"><img width="15" src="../img/btns/bin.png"></a></li>
@@ -151,7 +151,7 @@ var blog;
 var dataBase;
 var db;
 $(document).ready(function(e) {
-	$('.control-outer').show();
+	if(currentUser)$('.control-outer').show();
 	blogId = getURLParameter('blog');
 	db = getURLParameter('db');
 	console.log (typeof(blogId));
